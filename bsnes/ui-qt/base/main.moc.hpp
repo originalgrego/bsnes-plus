@@ -78,6 +78,7 @@ public:
       CheckAction *settings_emulationSpeed_syncVideo;
       CheckAction *settings_emulationSpeed_syncAudio;
     QAction *settings_configuration;
+    CheckAction *settings_c0netServer;
   QMenu *tools;
     QMenu *tools_movies;
       QAction *tools_movies_play;
@@ -160,6 +161,7 @@ public slots:
   void syncVideo();
   void syncAudio();
   void showConfigWindow();
+  void toggleC0NetServer();
   void playMovie();
   void stopMovie();
   void recordMovieFromPowerOn();

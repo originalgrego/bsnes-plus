@@ -85,6 +85,8 @@ void System::init(Interface *interface_) {
   msu1.init();
   serial.init();
 
+  c0Net.init();
+
   video.init();
   audio.init();
   input.init();
@@ -134,6 +136,8 @@ void System::power() {
   if(cartridge.has_msu1()) msu1.enable();
   if(cartridge.has_serial()) serial.enable();
 
+  c0Net.enable();  
+
   cpu.power();
   smp.power();
   dsp.power();
@@ -157,6 +161,8 @@ void System::power() {
   if(cartridge.has_st0018()) st0018.power();
   if(cartridge.has_msu1()) msu1.power();
   if(cartridge.has_serial()) serial.power();
+
+  c0Net.power();
 
   if(expansion == ExpansionPortDevice::BSX) cpu.coprocessors.append(&bsxbase);
   if(cartridge.mode() == Cartridge::Mode::SuperGameBoy) cpu.coprocessors.append(&supergameboy);
@@ -198,6 +204,8 @@ void System::reset() {
   if(cartridge.has_st0018()) st0018.reset();
   if(cartridge.has_msu1()) msu1.reset();
   if(cartridge.has_serial()) serial.reset();
+  
+  c0Net.reset();
 
   if(expansion == ExpansionPortDevice::BSX) cpu.coprocessors.append(&bsxbase);
   if(cartridge.mode() == Cartridge::Mode::SuperGameBoy) cpu.coprocessors.append(&supergameboy);

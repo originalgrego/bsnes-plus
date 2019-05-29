@@ -17,6 +17,8 @@ public:
   void updateEmulationSpeed(unsigned speed);
   void updateControllers();
 
+  void toggleC0NetServer();
+
   //system-state.cpp
   enum system_state_t { LoadCartridge, UnloadCartridge, PowerOn, PowerOff, PowerCycle, Reset, ReloadCartridge };
   void modifySystemState(system_state_t state);

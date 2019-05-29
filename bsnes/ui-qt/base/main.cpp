@@ -143,6 +143,10 @@ MainWindow::MainWindow() {
   settings_configuration = settings->addAction("&Configuration ...");
   settings_configuration->setMenuRole(QAction::PreferencesRole);
 
+  settings->addSeparator();
+  
+  settings->addAction(settings_c0netServer = new CheckAction("UltraNet", 0));
+
   tools = menuBar->addMenu("&Tools");
 
   tools_movies = tools->addMenu("&Movies");
@@ -322,7 +326,8 @@ MainWindow::MainWindow() {
   connect(help_documentation, SIGNAL(triggered()), this, SLOT(showDocumentation()));
   connect(help_license, SIGNAL(triggered()), this, SLOT(showLicense()));
   connect(help_about, SIGNAL(triggered()), this, SLOT(showAbout()));
-
+  connect(settings_c0netServer, SIGNAL(triggered()), this, SLOT(toggleC0NetServer()));
+ 
   syncUi();
 }
 
@@ -385,6 +390,8 @@ void MainWindow::syncUi() {
 
   settings_emulationSpeed_syncVideo->setChecked(config().video.synchronize);
   settings_emulationSpeed_syncAudio->setChecked(config().audio.synchronize);
+
+  settings_c0netServer->setChecked(config().system.c0NetServer);
 
   //movies contian save states to synchronize playback to recorded input
   tools_movies->setEnabled(SNES::cartridge.loaded() && cartridge.saveStatesSupported());
@@ -582,6 +589,8 @@ void MainWindow::syncVideo() { utility.toggleSynchronizeVideo(); }
 void MainWindow::syncAudio() { utility.toggleSynchronizeAudio(); }
 
 void MainWindow::showConfigWindow() { settingsWindow->show(); }
+
+void MainWindow::toggleC0NetServer() { config().system.c0NetServer = !config().system.c0NetServer; utility.toggleC0NetServer(); syncUi(); }
 
 void MainWindow::playMovie() {
   movie.chooseFile();

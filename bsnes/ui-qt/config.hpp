@@ -12,6 +12,7 @@ public:
     unsigned speedFastest;
     bool autoSaveMemory;
     bool rewindEnabled;
+    bool c0NetServer;
   } system;
 
   struct File {

@@ -109,6 +109,10 @@ void Utility::updateEmulationSpeed(unsigned speed) {
   audio.set(Audio::ResampleRatio, (double)infreq / (double)outfreq);
 }
 
+void Utility::toggleC0NetServer() {
+    SNES::c0Net.toggleServer();
+}
+
 void Utility::updateControllers() {
   SNES::input.port_set_device(0, SNES::config.controller_port1);
   SNES::input.port_set_device(1, SNES::config.controller_port2);
